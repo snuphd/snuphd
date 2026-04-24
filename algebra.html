@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algebra Group — SNU Mathematics Ph.D.</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .scholar-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:8px; }
+    .scholar-chip { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; display:flex; align-items:center; gap:12px; transition:transform .18s,box-shadow .18s; text-decoration:none; color:inherit; }
+    .scholar-chip:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); text-decoration:none; }
+    .sch-dot { width:38px; height:38px; border-radius:50%; background:var(--navy); color:var(--gold); font-family:var(--font-serif); font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .sch-info { min-width:0; }
+    .sch-name { font-family:var(--font-serif); font-size:.9rem; color:var(--navy); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-research { font-size:.75rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-year { font-size:.7rem; color:var(--navy-lt); margin-top:2px; font-weight:600; }
+  </style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<section class="group-hero" style="background:linear-gradient(135deg,#1a3a6a 0%,#2a5fa0 100%);">
+  <div style="font-size:3rem;margin-bottom:12px;">🔢</div>
+  <h1>Algebra Group</h1>
+  <p>Exploring the deep structure of groups, rings, Lie algebras, and their combinatorial and geometric manifestations.</p>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;">
+    <div>
+      <h2 class="section-title">About the Group</h2>
+      <div class="gold-rule"></div>
+      <p style="color:var(--muted);margin-bottom:14px;">The Algebra group at SNU works on a broad range of problems in pure algebra and its interactions with combinatorics, graph theory, and topology. Current themes include the structural study of finite groups via subgroup counts, generating graphs of groups, algebraic graph theory, Lie algebras and superalgebras, valuation theory, and representation theory.</p>
+      <p style="color:var(--muted);margin-bottom:14px;">Members of the group regularly participate in national and international conferences and maintain active collaborations with algebraists across India and abroad.</p>
+      <h3 style="font-family:var(--font-serif);color:var(--navy);margin:28px 0 14px;font-size:1.15rem;">Research Themes</h3>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:10px;">
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Group Theory</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Combinatorics</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Algebraic Graph Theory</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Lie Algebras &amp; Superalgebras</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Representation Theory</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Valuation Theory</li>
+        <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Number Theory</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="background:var(--navy);color:#fff;padding:28px 24px;">
+        <h4 style="color:var(--gold-lt);font-family:var(--font-serif);margin-bottom:16px;">Quick Info</h4>
+        <table style="width:100%;font-size:.88rem;border-collapse:collapse;">
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);">Seminars</td><td style="padding:7px 0 7px 10px;border-bottom:1px solid rgba(255,255,255,.1);">Weekly</td></tr>
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);">Scholars</td><td style="padding:7px 0 7px 10px;border-bottom:1px solid rgba(255,255,255,.1);">12 current &amp; recent</td></tr>
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;">Contact</td><td style="padding:7px 0 7px 10px;"><a href="mailto:asreddy@snu.edu.in" style="color:var(--gold-lt);">Dr. A. Satyanarayana Reddy</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Faculty</h2>
+    <div class="gold-rule"></div>
+    <div class="faculty-grid">
+      <a href="https://snu.edu.in/faculty/amber-habib/" target="_blank" class="faculty-card"><div class="faculty-avatar">AH</div><div class="faculty-name">Prof. Amber Habib</div><div class="faculty-role">Professor<br><span style="font-size:.78rem;">Lie Algebras, Mathematical Finance</span></div></a>
+      <a href="https://snu.edu.in/faculty/satyanarayana-reddy/" target="_blank" class="faculty-card"><div class="faculty-avatar">SR</div><div class="faculty-name">Dr. A. Satyanarayana Reddy</div><div class="faculty-role">Associate Professor<br><span style="font-size:.78rem;">Group Theory, Algebraic Graph Theory</span></div></a>
+      <a href="https://snu.edu.in/faculty/neha-gupta/" target="_blank" class="faculty-card"><div class="faculty-avatar">NG</div><div class="faculty-name">Dr. Neha Gupta</div><div class="faculty-role">Assistant Professor<br><span style="font-size:.78rem;">Combinatorics, Neural Codes</span></div></a>
+      <a href="https://snu.edu.in/faculty/parul-gupta/" target="_blank" class="faculty-card"><div class="faculty-avatar">PGu</div><div class="faculty-name">Dr. Parul Gupta</div><div class="faculty-role">Assistant Professor<br><span style="font-size:.78rem;">Algebra, Number Theory</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Ph.D. Scholars in this Group</h2>
+    <div class="gold-rule"></div>
+    <p style="color:var(--muted);margin-bottom:20px;">Click a scholar's card to view their full profile in the Scholar Directory.</p>
+    <div class="scholar-strip">
+      <a class="scholar-chip" href="students.html#s1"><div class="sch-dot">KS</div><div class="sch-info"><div class="sch-name">Kavita Samant</div><div class="sch-research">Algebraic Graph Theory &amp; Group Theory</div><div class="sch-year">Batch 2021 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s9"><div class="sch-dot">KhS</div><div class="sch-info"><div class="sch-name">Khyati Sharma</div><div class="sch-research">Group Theory &amp; Combinatorics</div><div class="sch-year">Batch 2020 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s39"><div class="sch-dot">ShS</div><div class="sch-info"><div class="sch-name">Shrinit Singh</div><div class="sch-research">Combinatorial &amp; Geometric Group Theory</div><div class="sch-year">Batch 2020 · Prof. Amber Habib &amp; Dr. A. S. Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s29"><div class="sch-dot">SuG</div><div class="sch-info"><div class="sch-name">Sushruta Ghosh</div><div class="sch-research">Lie Algebras &amp; Superalgebras</div><div class="sch-year">Batch 2022 · Prof. Amber Habib</div></div></a>
+      <a class="scholar-chip" href="students.html#s16"><div class="sch-dot">MU</div><div class="sch-info"><div class="sch-name">Manoj Upreti</div><div class="sch-research">Integer Partitions</div><div class="sch-year">Batch 2021 · Dr. Neha Gupta</div></div></a>
+      <a class="scholar-chip" href="students.html#s14"><div class="sch-dot">RB</div><div class="sch-info"><div class="sch-name">R Bhadrashri</div><div class="sch-research">Valuation Theory, Quadratic Forms</div><div class="sch-year">Batch 2025 · Dr. Parul Gupta</div></div></a>
+      <a class="scholar-chip" href="students.html#s25"><div class="sch-dot">Ko</div><div class="sch-info"><div class="sch-name">Komal</div><div class="sch-research">Algebra &amp; Number Theory (Matrix Waring Problem)</div><div class="sch-year">Batch 2024 · Dr. Parul Gupta</div></div></a>
+      <a class="scholar-chip" href="students.html#s30"><div class="sch-dot">MN</div><div class="sch-info"><div class="sch-name">Monimala Nej</div><div class="sch-research">Exponents of Primitive Companion Matrices</div><div class="sch-year">Batch 2014 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s31"><div class="sch-dot">DP</div><div class="sch-info"><div class="sch-name">Devendra Prasad</div><div class="sch-research">Fixed Divisors &amp; Generalized Factorials</div><div class="sch-year">Batch 2014 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s33"><div class="sch-dot">BK</div><div class="sch-info"><div class="sch-name">Biswajit Koley</div><div class="sch-research">Polynomials divisible by Cyclotomic Polynomials</div><div class="sch-year">Batch 2015 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s34"><div class="sch-dot">SKH</div><div class="sch-info"><div class="sch-name">Samir Kumar Hazra</div><div class="sch-research">Extensions of Lie Superalgebras</div><div class="sch-year">Batch 2015 · Prof. Amber Habib</div></div></a>
+      <a class="scholar-chip" href="students.html#s36"><div class="sch-dot">ShC</div><div class="sch-info"><div class="sch-name">Shivani Chauhan</div><div class="sch-research">Double Covers of Line Graphs</div><div class="sch-year">Batch 2019 · Dr. A. Satyanarayana Reddy</div></div></a>
+    <a class="scholar-chip" href="students.html#s3"><div class="sch-dot">VD</div><div class="sch-info"><div class="sch-name">Varun Dawar</div><div class="sch-research">Neural Codes</div><div class="sch-year">Batch 2025 · Dr. Neha Gupta</div></div></a>
+      </div>
+    
+    <div style="margin-top:22px;"><a class="btn btn-primary" href="students.html">Full Scholar Directory →</a></div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Recent Publications from the Group</h2>
+    <div class="gold-rule"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2026 · <em>Linear and Multilinear Algebra</em></div><div style="font-weight:600;color:var(--navy);">The Generating Graph of Dicyclic Groups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Kavita Samant</div><a href="https://www.tandfonline.com/doi/full/10.1080/03081087.2026.2623170" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2026 · <em>arXiv preprint</em></div><div style="font-weight:600;color:var(--navy);">Group Structures via Subgroup Counts</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Khyati Sharma</div><a href="https://arxiv.org/abs/2604.08040" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">View on arXiv →</a></div>
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>Bulletin of Australian Mathematical Society</em></div><div style="font-weight:600;color:var(--navy);">Groups having 12 cyclic subgroups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Khyati Sharma</div><a href="https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/abs/groups-having-12-cyclic-subgroups/F840743916FA4E4E2047FA05246051EC" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>Bulletin of the London Mathematical Society</em></div><div style="font-weight:600;color:var(--navy);">A note on words having the same images on finite groups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Shrinit Singh</div><a href="https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/blms.70150" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+

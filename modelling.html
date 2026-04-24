@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelling & Networks Group — SNU Mathematics Ph.D.</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .scholar-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:8px; }
+    .scholar-chip { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; display:flex; align-items:center; gap:12px; transition:transform .18s,box-shadow .18s; text-decoration:none; color:inherit; }
+    .scholar-chip:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); text-decoration:none; }
+    .sch-dot { width:38px; height:38px; border-radius:50%; background:var(--navy); color:var(--gold); font-family:var(--font-serif); font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .sch-info { min-width:0; }
+    .sch-name { font-family:var(--font-serif); font-size:.9rem; color:var(--navy); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-research { font-size:.75rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-year { font-size:.7rem; color:var(--navy-lt); margin-top:2px; font-weight:600; }
+  </style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<section class="group-hero" style="background:linear-gradient(135deg,#004d40 0%,#00796b 100%);">
+  <div style="font-size:3rem;margin-bottom:12px;">🕸️</div>
+  <h1>Modelling & Networks Group</h1>
+  <p>Applying mathematical rigor to complex systems, infectious diseases, financial markets, and strategic optimization.</p>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;">
+    <div>
+      <h2 class="section-title">About the Group</h2>
+      <div class="gold-rule"></div>
+      <p style="color:var(--muted);margin-bottom:14px;">The Modelling and Networks group focuses on the intersection of mathematics and real-world systems. Our research spans across mathematical biology, game theory, network science, and optimization. We develop models to understand disease transmission, social-ecological dynamics, and the hidden structures within financial and complex social networks.</p>
+      <p style="color:var(--muted);margin-bottom:14px;">Our work often integrates traditional analytical methods with data-driven techniques, including machine learning and random matrix theory, to solve contemporary problems in sustainability and finance.</p>
+      <h3 style="font-family:var(--font-serif);color:var(--navy);margin:28px 0 14px;font-size:1.15rem;">Research Themes</h3>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:10px;">
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Mathematical Modelling</li>
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Game Theory</li>
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Complex Networks</li>
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Optimization</li>
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Epidemiology</li>
+        <li style="background:#eef8f5;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#004d40;font-weight:600;">Financial Networks</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="background:var(--navy);color:#fff;padding:28px 24px;">
+        <h4 style="color:var(--gold-lt);font-family:var(--font-serif);margin-bottom:16px;">Group Contact</h4>
+        <table style="width:100%;font-size:.88rem;border-collapse:collapse;">
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);">Seminars</td><td style="padding:7px 0 7px 10px;border-bottom:1px solid rgba(255,255,255,.1);">Bi-Weekly</td></tr>
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;">Contact</td><td style="padding:7px 0 7px 10px;"><a href="mailto:samit.b@snu.edu.in" style="color:var(--gold-lt);">Dr. Samit Bhattacharyya</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Faculty</h2>
+    <div class="gold-rule"></div>
+    <div class="faculty-grid">
+      <a href="https://snu.edu.in/faculty/dipti-dubey/" target="_blank" class="faculty-card"><div class="faculty-avatar">DD</div><div class="faculty-name">Dr. Dipti Dubey</div><div class="faculty-role">Associate Professor<br><span style="font-size:.78rem;">Optimization, Linear Algebra</span></div></a>
+      <a href="https://snu.edu.in/faculty/samit-battacharyya/" target="_blank" class="faculty-card"><div class="faculty-avatar">SBh</div><div class="faculty-name">Dr. Samit Bhattacharyya</div><div class="faculty-role">Associate Professor<br><span style="font-size:.78rem;">Mathematical Biology, Infectious Diseases</span></div></a>
+      <a href="https://snu.edu.in/faculty/sudeepto-bhattacharya/" target="_blank" class="faculty-card"><div class="faculty-avatar">SBt</div><div class="faculty-name">Prof. Sudeepto Bhattacharya</div><div class="faculty-role">Professor<br><span style="font-size:.78rem;">Complex Networks, Game Theory</span></div></a>
+      <a href="https://snu.edu.in/faculty/somya-singh/" target="_blank" class="faculty-card"><div class="faculty-avatar">SSi</div><div class="faculty-name">Dr. Somya Singh</div><div class="faculty-role">Assistant Professor<br><span style="font-size:.78rem;">Game Theory, Networks</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Ph.D. Scholars in this Group</h2>
+    <div class="gold-rule"></div>
+    <div class="scholar-strip">
+      <a class="scholar-chip" href="students.html#s7"><div class="sch-dot">PS</div><div class="sch-info"><div class="sch-name">Preeti Saini</div><div class="sch-research">Infectious disease Modelling</div><div class="sch-year">Monsoon 2021 · Dr. Samit Bhattacharyya</div></div></a>
+      <a class="scholar-chip" href="students.html#s20"><div class="sch-dot">SA</div><div class="sch-info"><div class="sch-name">Saif Abbas</div><div class="sch-research">Evolutionary Game Theory</div><div class="sch-year">Batch 2023 · Dr. Samit Bhattacharyya</div></div></a>
+      <a class="scholar-chip" href="students.html#s21"><div class="sch-dot">LM</div><div class="sch-info"><div class="sch-name">Lakshmi Manalipadam</div><div class="sch-research">Spatiotemporal Modelling</div><div class="sch-year">Batch 2023 · Dr. S. Battacharyya & Dr. C. Sharma</div></div></a>
+      <a class="scholar-chip" href="students.html#s23"><div class="sch-dot">MD</div><div class="sch-info"><div class="sch-name">Monica Dhyani</div><div class="sch-research">Dynamical Systems</div><div class="sch-year">Batch 2022 · Dr. Samit Bhattacharyya</div></div></a>
+      <a class="scholar-chip" href="students.html#s32"><div class="sch-dot">SU</div><div class="sch-info"><div class="sch-name">Shashankaditya Upadhyay</div><div class="sch-research">Modelling & Optimization</div><div class="sch-year">Batch 2017 · Prof. Sudeepto Bhattacharya</div></div></a>
+      <a class="scholar-chip" href="students.html#s38"><div class="sch-dot">BC</div><div class="sch-info"><div class="sch-name">Bharat Pratap Chauhan</div><div class="sch-research">Semimonotone Matrices</div><div class="sch-year">Batch 2019 · Dr. Dipti Dubey</div></div></a>
+    </div>
+    <div style="margin-top:22px;"><a class="btn btn-primary" href="students.html">Full Scholar Directory →</a></div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Recent Publications from the Group</h2>
+    <div class="gold-rule"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>PLOS ONE</em></div><div style="font-weight:600;color:var(--navy);">Impact of multiple consultations and switching in treatment-seeking in tuberculosis</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Preeti Saini</div><a href="#" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

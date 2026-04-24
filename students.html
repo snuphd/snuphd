@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ph.D. Scholar Directory — SNU Mathematics</title>
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #003366;
+            --primary-light: #00509e;
+            --accent-color: #d4af37;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-light: #596e82;
+            --border-radius: 8px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-hover: 0 12px 20px rgba(0,0,0,0.12);
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & LAYOUT --- */
+        header {
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 100;
+            border-top: 5px solid var(--primary-color);
+        }
+        .navbar {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; height: 70px;
+        }
+        .brand .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--primary-color); }
+        .brand .sub-logo { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; }
+        .nav-actions button {
+            background: var(--primary-color); color: white; border: none;
+            padding: 10px 20px; border-radius: 4px; cursor: pointer;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* --- GRID LAYOUT --- */
+        .grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- BATCH HEADER STYLES --- */
+        .batch-header {
+            grid-column: 1 / -1; /* Spans across all columns */
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        /* --- CARD DESIGN --- */
+        .student-card {
+            background: var(--card-bg); border-radius: var(--border-radius);
+            overflow: hidden; box-shadow: var(--shadow);
+            transition: all 0.3s ease; cursor: pointer;
+            border:1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column;
+        }
+        .student-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        
+        .card-header { height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); position: relative; }
+        .avatar {
+            width: 80px; height: 80px; border-radius: 50%; background: #eee;
+            border: 3px solid var(--card-bg); position: absolute; bottom: -40px; left: 20px;
+            object-fit: cover;
+        }
+        .card-body { padding: 50px 20px 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-name { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .card-title { font-size: 0.85rem; color: var(--accent-color); font-weight: 600; text-transform: uppercase; margin-bottom: 12px; }
+        .card-meta { margin-top: auto; padding-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #888; display: flex; justify-content: space-between;}
+
+        /* --- MODAL (Detailed Profile) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background: white; width: 100%; max-width: 850px; max-height: 90vh;
+            border-radius: 12px; overflow-y: auto; position: relative;
+            display: flex; flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+        @media(min-width: 768px) { .modal-content { flex-direction: row; overflow: hidden; } }
+
+        .modal-image-col {
+            background: #f0f4f8; padding: 30px; display: flex; flex-direction: column;
+            align-items: center; text-align: center; flex: 0 0 300px;
+        }
+        .modal-info-col { padding: 40px; flex: 1; overflow-y: auto; }
+
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; border: none; background: none; cursor: pointer; color: #999; z-index: 10; }
+        .close-btn:hover { color: var(--primary-color); }
+
+        /* --- TYPOGRAPHY & LIST STYLES --- */
+        .section-header {
+            font-size: 0.85rem; text-transform: uppercase; color: var(--text-light);
+            margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #eee;
+            padding-bottom: 5px; font-weight: 700; letter-spacing: 0.5px;
+        }
+        .section-header:first-child { margin-top: 0; }
+
+        .detail-value { font-size: 1.1rem; color: var(--text-main); margin-bottom: 15px; }
+        .detail-value.large { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); }
+
+        /* List Styling for Publications & Education */
+        ul.styled-list { list-style: none; padding: 0; }
+        ul.styled-list li { 
+            position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 0.95rem; color: #444; 
+        }
+        ul.styled-list li::before {
+            content: "•"; color: var(--primary-color); font-weight: bold; 
+            display: inline-block; width: 1em; margin-left: -1em;
+        }
+        
+        .pub-year { font-weight: bold; color: var(--primary-color); margin-right: 8px; }
+        .pub-journal { font-style: italic; color: #666; font-size: 0.9em; }
+        .pub-link { font-size: 0.8em; color: var(--primary-light); text-decoration: none; margin-left: 8px; }
+
+        .edu-degree { font-weight: 700; color: var(--text-main); }
+        .edu-meta { font-size: 0.9em; color: #777; }
+
+        .social-btn {
+            display: inline-block; margin-right: 5px; margin-top: 5px;
+            text-decoration: none; color: white; background: #555;
+            padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;
+        }
+        .social-btn.linkedin { background: #0077b5; }
+        .social-btn.scholar { background: #4285F4; }
+        .social-btn.website { background: var(--accent-color); color: #333; }
+        .social-btn.email { background: var(--primary-color); }
+        .social-btn.rg { background: #00ccbb; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <script src="nav.js"></script>
+
+    <section style="background:linear-gradient(135deg,var(--navy) 0%,#004080 100%);color:#fff;padding:50px 24px 42px;text-align:center;">
+      <div style="max-width:700px;margin:0 auto;">
+        <div style="font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;">Department of Mathematics</div>
+        <h1 style="font-family:var(--font-serif);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:12px;">Ph.D. Scholar Directory</h1>
+        <p style="opacity:.85;font-size:1rem;">Profiles of current and recent doctoral scholars — research, publications, and more.</p>
+      </div>
+    </section>
+
+    <main class="container">
+        <div class="grid" id="studentGrid"></div>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="profileModal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            
+            <div class="modal-image-col">
+                <img src="" alt="" class="avatar" id="mImg" style="width: 120px; height: 120px; position: relative; margin-bottom: 20px; border: 4px solid white; box-shadow: var(--shadow);">
+                <h2 id="mName" style="margin-bottom: 5px;"></h2>
+                <span id="mYear" style="color: #666; font-size: 0.9rem;"></span>
+                <div id="mSocials" style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center;"></div>
+            </div>
+            
+            <div class="modal-info-col">
+                <div class="section-header">Research Area</div>
+                <div class="detail-value" id="mResearch"></div>
+                
+                <div class="section-header">Supervisor</div>
+                <div class="detail-value" id="mSupervisor"></div>
+
+                <div class="section-header">Biography</div>
+                <div class="detail-value" id="mBio" style="font-size: 0.95rem; line-height: 1.7;"></div>
+
+                <div class="section-header">Education</div>
+                <ul class="styled-list" id="mEducation">
+                    <!-- Education items injected here -->
+                </ul>
+
+                <div class="section-header">Selected Publications</div>
+                <ul class="styled-list" id="mPublications">
+                    <!-- Publications injected here -->
+                </ul>
+
+                <div class="section-header">Preprints</div>
+                <ul class="styled-list" id="mPreprints">
+                    <!-- Preprints injected here -->
+                </ul>
+
+                <div class="section-header" id="mTalksHeader" style="display:none;">Selected Talks</div>
+                <ul class="styled-list" id="mTalks">
+                    <!-- Talks injected here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. DATA STRUCTURE
+        // ============================================================
+        const students = [
+            {
+                id: 1,
+                name: "Kavita Samant",
+                research: "Algebraic Graph Theory and Group Theory",
+                supervisor: "Dr. A. Satyanarayana Reddy", 
+                bio: "I recently completed my Ph.D. in Mathematics, with a thesis titled On Generating Graphs of Finite Groups. My doctoral research focused on structural and spectral properties of generating graphs of finite groups, and their connections to broader problems in algebra and combinatorics. I am currently a visiting researcher with Dr. Bireswar Das.",
+                year: "Batch 2021",
+                emails: [
+                    { type: "Official", address: "mailto:ks299@snu.edu.in" },
+                    { type: "Personal", address: "mailto:kavitasamant08@gmail.com" }
+                ],
+                img: "images/Kavita.jpg",
+                education: [
+                    { degree: "Ph.D. in Mathematics", institution: "Shiv Nadar Institution of Eminence, Delhi-NCR", year: "2026" },
+                    { degree: "M.Phil. in Mathematics", institution: "Dr. B. R. Ambedkar University, Delhi", year: "2021" },
+                    { degree: "M.Sc. Mathematics", institution: "Hindu College, University of Delhi", year: "2018" },
+                    { degree: "B.Sc.(Hons.) Mathematics", institution: "Vivekananda College, University of Delhi", year: "2014" }
+                ],
+                publications: [
+                    { title: "Generating Graphs of Finite Dihedral Groups", journal: "Results in Mathematics", year: "2023", link: "https://link.springer.com/article/10.1007/s00025-023-01963-x" },
+                    { title: "The Generating Graph of Dicyclic Groups", journal: "Linear and Multilinear Algebra", year: "2026", link: "https://www.tandfonline.com/doi/full/10.1080/03081087.2026.2623170" }
+                ],
+                preprints: [
+                    { title: "An Arithmetic Characterization of 2-Generated Numbers", year: "2025", link: "https://arxiv.org/abs/2508.16356" },
+                    { title: "Spectral Bounds of Generating Graph of Z_n", year: "2025", link: "https://arxiv.org/abs/2501.09771" }
+                ],
+                social: {
+                    researchgate: "https://www.researchgate.net/profile/Kavita-Samant",
+                    googleScholar: "",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 2,
+                name: "Suhas B Mahesh",
+                research: "Geometry and Topology",
+                supervisor: "Prof. Indranil Biswas",
+                bio: "Ph D scholar working on Geometry and Topology",
+                year: "Batch 2025",
+                email: "mailto:sm834@snu.edu.in",
+                img: "images/Suhas.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "NIT Jamshedpur", year: "2023" },
+                    { degree: "B.Sc B.Ed (PCM)", institution: "Regional Institute of Education Mysuru, NCERT", year: "2020" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: "https://siddarthsspace.github.io"
+                }
+            },                
+            { 
+                id: 3,
+                name: "Varun Dawar",
+                research: "Neural Codes",
+                supervisor: "Dr. Neha Gupta",
+                bio: "Ph D scholar working on studying neural activity, understanding receptive field structure for a set of neurons, & their representations in euclidean spaces.",
+                year: "Batch 2025",
+                email: "mailto:vd959@snu.edu.in",
+                img: "images/Varun.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "IIT Roorkee", year: "2025" },
+                    { degree: "B.A.", institution: "DAVC Chandigarh", year: "2006" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Adarsh S",
+                research: "Data Science & AI",
+                supervisor: "Dr. Ajit Kumar",
+                bio: "Ph D scholar working on RAG systems and building AI agents.",
+                year: "Batch 2025",
+                email: "mailto:as197@snu.edu.in",
+                img: "images/Adarsh.jpg",
+                education: [
+                    { degree: "M.S Mathematics", institution: "IISER Tirupati", year: "2024" },
+                    { degree: "B.S Mathematics", institution: "IISER Tirupati", year: "2024" }
+                ],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/adarsh-sudarsanan/",
+                    googleScholar: "",
+                    arxiv: "",
+                    personalWebpage: "https://adarshs1002.github.io"
+                }
+            },
+            {
+                id: 5,
+                name: "Hiren Dhameliya",
+                research: "Combinatorial Algebraic Topology",
+                supervisor: "Prof. Sudeepto Bhattacharya",
+                bio: "Ph D scholar working on Some structural aspects of simplicial complexes",
+                year: "Batch 2023",
+                email: "mailto:dj121@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "BS-MS", institution: "IISER Pune", year: "2019" } ],
+                publications: [],
+                preprints: [],
+                social: { 
+                    arxiv:"https://arxiv.org/abs/2602.23383",
+                    linkedin: "",
+                    googlescholar: ""              
+                }
+            },
+            { 
+                id: 6,
+                name: "Devarajan Iyer",
+                research: "Complex Geometry",
+                supervisor: "Prof. Indranil Biswas",
+                bio: "Ph D scholar working on Geometry and Topology",
+                year: "Batch 2025",
+                email: "mailto:di843@snu.edu.in",
+                img: "images/Deva.jpeg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Hyderabad", year: "2023" },
+                    { degree: "B.Sc(H) Mathematics", institution: "Amity University, Mumbai", year: "2021" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "https://in.linkedin.com/in/deva-iyer-5921b3280",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            { 
+                id: 7,
+                name: "Preeti Saini",
+                research: "Infectious disease Modelling",
+                supervisor: "Dr. Samit Bhattacharyya",
+                bio: "Ph D scholar working on Mathematical modelling of treatment seeking behaviour in Tuberculosis",
+                year: "Monsoon 2021",
+                email: "mailto:ps683@snu.edu.in",
+                img: "images/Preeti.jpeg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "MNNIT Allahabad, Prayagraj", year: "2018" },
+                    { degree: "B.Sc(PCM)", institution: "Hemwati Nandan Bahuguna Gharhwal University", year: "2015" }
+                ],
+                publications: [
+                    { title: "Saini P, Bhattacharyya S. Impact of multiple consultations and switching in treatment-seeking in tuberculosis: mathematical modelling and optimal control. Plos one. 2025 Jun 10;20(6):e0324330.", journal: "Plos one", year: "2025", link: "#" }
+                ],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/preeti-saini-8a5311228"
+                }
+            },
+            {
+                id: 8,
+                name: "Leena Sarma",
+                research: "Optimization Theory",
+                supervisor: "Dr. Dipti Dubey",
+                bio: "Ph D scholar working on Optimization theory.",
+                year: "Batch 2025",
+                email: "mailto:ls451@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Arya Vidyapeeth College(Gauhati University)", year: "2022" },
+                    { degree: "B.Sc Mathematics", institution: "Arya Vidyapeeth College", year: "2020" }
+                ],
+                publications:[],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""                   
+                }
+            },
+            {
+                id: 9,
+                name: "Khyati Sharma",
+                research: "Group Theory and Combinatorics",
+                supervisor: "Dr. A. Satyanarayana Reddy",
+                bio: "I completed my Ph.D. in Mathematics from Shiv Nadar Institution of Eminence with a thesis titled Study of finite groups through subgroups and their count, under supervision of Dr. A. Satyanarayana Reddy. I am working on problems related to understanding of structure of finite groups using subgroups and their counts, as well as other tools.I am currently a Postdoctoral researcher with Dr. Amiya Mandal (Assistant Professor, Department of Mathematics, IISER Berhampur). My research interests lie in group theory and interplay between group theory and graph theory.",
+                year: "Batch 2020",
+                emails: [
+                    { type: "Official", address: "mailto:ks171@snu.edu.in" },
+                    { type: "Personal", address: "mailto:khyatisharma0907@gmail.com" }
+                ],
+                img: "images/Khyati.jpg",
+                education: [
+                    { degree: "Ph.D. in Mathematics", institution: "Shiv Nadar Institution of Eminence, Delhi-NCR", year: "2025" },
+                    { degree: "M.Sc. Mathematics", institution: "DAV (PG) College, CCS University UP", year: "_" },
+                    { degree: "B.Sc. (PCM)", institution: " DAV (PG) College, CCS University UP", year: "_" }
+                ],
+                publications: [
+                    { title: "Groups having 11 cyclic subgroups", journal: "International Journal of Group Theory", year: "2024", link: "https://ijgt.ui.ac.ir/article_27858.html" },
+                    { title: "Groups having 12 cyclic subgroups", journal: "Bulletin of Australian Mathematical Society", year: "2025", link: "https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/abs/groups-having-12-cyclic-subgroups/F840743916FA4E4E2047FA05246051EC" }
+                ],
+                preprints: [
+                    { title: "CLT-Groups with Cyclic or Abelian Subgroups", year: "2022", arxivLink: "https://arxiv.org/abs/2208.01415" },
+                    { title: "Cyclic subgroup graph of a group", year: "2024", link: "https://arxiv.org/abs/2409.13796" },
+                    { title: "Group Structures via Subgroup Counts", year: "2026", link: "https://arxiv.org/abs/2604.08040" }
+                ],
+                social: {
+                    researchgate: "https://www.researchgate.net/profile/Khyati-Sharma-6",
+                    googleScholar: "https://scholar.google.com/citations?user=dCnb8q8AAAAJ&hl=en",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 10,
+                name: "Akshat Srivastava",
+                research: "Probability and Statistics",
+                supervisor: "Dr. Qazi Azhad Jamal",
+                bio: "PhD scholar working in Statistical inference based on Copulas",
+                year: "Batch 2024",
+                email: "mailto:as866@snu.edu.in",
+                img: "images/Akshat.jpg",
+                education: [
+                    { degree: "MSc Statistics", institution: "BBAU (A Central University), Lucknow", year: "2024" },
+                    { degree: "BSc (Computer Science, Mathematics, Statistics)", institution: "CHRIST (Deemed to be University), Central Campus, Bengaluru", year: "2022" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 11,
+                name: "Krishna Kumar Gupta",
+                research: "Matrix Analysis and Operator Theory",
+                supervisor: "Dr. Priyanka Grover",
+                bio: "I am a Ph.D. scholar working in the area of Matrix Analysis and Operator Theory under the supervision of Dr. Priyanka Grover. My research focuses on operator norms, subdifferential theory, and approximate orthogonality in spaces of bounded linear operators. My research also focuses on matrix approximation problems, particularly best approximations and its properties.",
+                year: "Batch 2021",
+                emails: [
+                    { type: "Official", address: "mailto:kg952@snu.edu.in" },
+                    { type: "Personal", address: "mailto:shrikrishna6996@gmail.com" }
+                ],
+                img: "images/Krishna.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "IIT Madras", year: "2019" },
+                    { degree: "B.Sc.(Hons.) Mathematics", institution: "PGDAV (Eve) College, University of Delhi", year: "2017" }
+                ],
+                preprints: [
+                    { title: "Subdifferential of B(H,K) norm, and approximate orthogonality", year: "2025", arxivLink: "https://arxiv.org/abs/2505.06925" },
+                    { title: "Properties of best approximations with respect to Ky Fan p-k norm, and strict spectral approximants of a matrix", year: "2026", link: "https://arxiv.org/abs/2603.07498" }
+                ],
+                social: {
+                    linkedin: "",
+                    researchgate: "https://www.researchgate.net/profile/Krishna-Gupta-42?ev=hdr_xprf",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 12,
+                name: "Sohan Misra",
+                research: "Functional Analysis and Operator Theory",
+                supervisor: "Dr Priyanka Grover",
+                bio: "PhD Research Scholar working in Functional Analysis and Operator Theory",
+                year: "Batch 2025",
+                email: "mailto:sm951@snu.edu.in",
+                img: "images/Sohan.jpeg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "NIT Rourkela", year: "2023" },
+                    { degree: "B.Sc (Hons.)", institution: "Ramakrishna Mission Residential College, Narendrapur", year: "2020" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "https://linkedin.com/in/sohan-misra-825688309",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            { 
+                id: 13,
+                name: "Dushyant Kumar Sengar",
+                research: "Functional Analysis",
+                supervisor: "Prof. Sneh Lata",
+                bio: "PhD scholar working on Special Operators on spaces of Analytic Functions",
+                year: "Batch 2023",
+                email: "mailto:ds342@snu.edu.in",
+                img: "images/Dushyant.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Indian Institute of Technology Kanpur", year: "2020" },
+                    { degree: "B.Tech. Electrical Engineering", institution: "Zakir Husain College of Engineering and Technology, AMU", year: "2016" }
+                ],
+                publications: [
+                    { title: "", journal: "", year: "", link: "" }
+                ],
+                social: {
+                    linkedin: "http://linkedin.com/in/dushyant-sengar-973130119",
+                    googleScholar: "https://scholar.google.com/citations?view_op=new_profile&hl=en",
+                    arxiv: "",
+                    personalWebpage: ""                   
+                }
+            },
+            { 
+                id: 14,
+                name: "R Bhadrashri",
+                research: "Algebra",
+                supervisor: "Dr. Parul Gupta",
+                bio: "Ph D scholar working on Valuation Theory, Quadratic Forms, Commutative Algebra",
+                year: "Batch 2025",
+                email: "mailto:rb150@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Madras", year: "2021" },
+                    { degree: "B.Sc. Mathematics", institution: "University of Madras", year: "2019" }
+                ],
+                publications: [],
+                social: {
+                    linkedin: "",
+                    googleScholar: "",
+                    arxiv: "",
+                    personalWebpage: ""                   
+                }
+            },
+            {
+                id: 15,
+                name: "Ms. Rekha",
+                research: "Signal Reconstruction, Compressive Sensing",
+                supervisor: "Dr. Santosh Singh",
+                bio: "PhD scholar working on signal and image reconstruction using compressive sensing",
+                year: "Batch 2020",
+                email: "mailto:re824@snu.edu.in",
+                img: "images/Rekha.jpeg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Delhi", year: "2015" },
+                    { degree: "B.Sc(Hons) Mathematics", institution: "University of Delhi", year: "2013" }
+                ],
+                publications: [
+                    { title: "An Optimized Model for Pseudo-Random and Deterministic Construction of Sensing Matrix", journal: "Annals of Operations Research", year: "2024", link: "https://doi.org/10.1007/s10479-025-06675-9" },
+                    { title: "From linear system of equations to artificial intelligence - evolution journey of computer tomographic image reconstruction algorithms", book: "Applied Linear Algebra, Probability and Statistics: A Volume in Honour of CR Rao and Arbind K. Lal, Springer Nature Singapore", year: "2023", link: "https://doi.org/10.1007/978-981-99-2310-6_5" },
+                    { title: "Deterministic Way of Designing Sensing Matrix", conference: "IFAC-PapersOnLine, ACODS 2024", year: "2023", link: "https://doi.org/10.1016/j.ifacol.2024.05.035" },
+                    { title: "Densely Connected Residual U-Net: Computed Tomography Reconstructed Image Enhancement and Artifact Removal", conference: "10th International Conference on Frontiers of Signal Processing (ICFSP)", year: "2025", link: "https://ieeexplore.ieee.org/document/11353859" }
+                ],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/rekha-yadav-ry/",
+                    googleScholar: "https://scholar.google.com/citations?user=Fi3BsCUAAAAJ&hl=en",
+                    arxiv: "",
+                    personalWebpage: ""                  
+                }
+            },
+            
+            { 
+                id: 16,
+                name: "Manoj Upreti",
+                research: "Integer Partitions",
+                supervisor: "Dr. Neha Gupta",
+                bio: "Ph D scholar working integer partitions and related topics",
+                year: "Batch 2021",
+                email: "mailto:mu506@snu.edu.in",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+                id: 17,
+                name: "Gaurav G Kottari",
+                research: "Interactions among Sustainable Development Goals (SDGs)",
+                supervisor: "Dr. Niteesh Sahni and Dr. Qazi J. Azhad",
+                bio: "Ph D scholar working on mathematical modelling and data-driven modelling of SDGs",
+                year: "Batch 2023",
+                email: "mailto:gk917@snu.edu.in",
+                img: "images/Gaurav.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Mangalore University Mangalagangotri", year: "2022" },
+                    { degree: "B.Sc(PEM)", institution: "St Aloysius College, Mangaluru", year: "2020" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            }, 
+            {
+                id: 18,
+                name: "Shweta Yadav",
+                research: "Matrix Theory and Optimization",
+                supervisor: "Dr. Dipti Dubey", 
+                bio: "I am a Ph.D. scholar in Mathematics, working on absolute value equations, with a broader interest in matrix theory and its interplay with optimization.",
+                year: "Batch 2023",
+                emails: [
+                    { type: "Official", address: "mailto:sy213@snu.edu.in" },
+                    { type: "Personal", address: "mailto:shweta0379yadav@gmail.com" }
+                ],
+                img: "images/Shweta.jpg",
+                education: [
+                    { degree: "M.Sc. Mathematics", institution: "University of Delhi", year: "2021" },
+                    { degree: "B.Sc.(Hons.) Mathematics", institution: "University of Delhi", year: "2019" }
+                ],
+                publications: [
+                    { title: "On the properties of solution set of absolute value equations", journal: "Optimization Letters", year: "2026", link: "https://doi.org/10.1007/s11590-025-02255-9" }
+                ],
+                preprints: [],
+                social: {
+                    googleScholar: "https://scholar.google.com/citations?hl=en&user=k_gvIbMAAAAJ",
+                    linkedin: "https://www.linkedin.com/in/shwetaayadavv/"
+                }
+            },
+            {
+                id: 19,
+                name: "Hariom Singh",
+                research: "Functional Analysis",
+                supervisor: "",
+                bio: "Ph D scholar working on Functional Analysis",
+                year: "Batch 2025",
+                email: "mailto:hs629@snu.edu.in",
+                img: "images/Hariom.jpeg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "CSJM University Kanpur", year: "2023" },
+                    { degree: "B.Sc  (PCM)", institution: "CSJM University Kanpur", year: "2021" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/hariom-singh-18650a368",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 20,
+                name: "Saif Abbas",
+                research: "Disease Modelling",
+                supervisor: "Prof. Samit Bhattacharyya",
+                bio: "Ph D scholar working on Mathematical Modelling",
+                year: "Batch 2023",
+                email: "mailto:sa730@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "M.Sc Mathematics with Computer science", institution: "Jamia Millia Islamia", year: "2017"},
+                    { degree: "B.Sc  (PCM)", institution: "Chaudhary Charan Singh University", year: "2015" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            { 
+                id: 21,
+                name: "Lakshmi Manalipadam",
+                research: "Spatiotemporal modelling of particulate matter",
+                supervisor: "Dr. Charu Sharma, Dr.Samit Battacharyya",
+                bio: "Ph D scholar working on Modelling",
+                year: "Batch 2023",
+                email: "mailto:am138@snu.edu.in",
+                img: "images/Lakshmi.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Sri Sathya Sai Institute of Higher Learning", year: "2023" },
+                    { degree: "B.Sc (Hons. Mathematics)", institution: "Sri Sathya Sai Institute of Higher Learning", year: "2021" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 22,
+                name: "Anirban Mondal",
+                research: "Algebraic Geometry",
+                supervisor: "Prof. Indranil Biswas",
+                bio: "Ph.D scholar working on Quiver bundles, Rationality of Moduli space of Bundles",
+                year: "Batch 2024",
+                email: "mailto:am455@snu.edu.in",
+                img: "images/Anirban.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Hyderabad", year: "2023" },
+                    { degree: "B.Sc Mathematics", institution: "Chandernagore College", year: "2021" }
+                ],
+                publications: [],
+                preprints: [],
+                social: {
+                    linkedin: "https://in.linkedin.com/in/anirban-mondal-238ab9281",
+                    googlescholar: ""
+                }
+            },
+            { 
+                id: 23,
+                name: "Monica Dhyani",
+                research: "Online Innovation Networks",
+                supervisor: "Dr. Samit Bhattacharyya and Dr. Satyam Mukherjee",
+                bio: "I am a Ph D scholar understanding Online Innovation Networks using Network Science approach",
+                year: "Batch 2023",
+                email: "mailto:md434@snu.edu.in",
+                img: "images/Monica.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Sri Dev Suman University,Tehri Garhwal, Uttarakhand", year: "2022" },
+                    { degree: "B.Sc (PCM)", institution: "Hemwati Nandan Bahuguna Garhwal University, Pauri Garhwal ,Uttarakhand", year: "2019" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: "https://md434-star.github.io"
+                }
+            },
+            { 
+                id: 24,
+                name: "Santosh Singh Negi",
+                research: "Operator theory",
+                supervisor: "Dr. Sneh lata",
+                bio: "",
+                year: "Batch 2023",
+                email: "mailto:sn210@snu.edu.in",
+                img: "images/Negi.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "JNU ", year: "2021" },
+                    { degree: "B.Sc B.Ed (PCM)", institution: "Baba Farid institute of technology", year: "2018" }
+                ],
+                preprints: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 25,
+                name: "Komal",
+                research: "Algebra and Number Theory",
+                supervisor: "Dr. Parul Gupta",
+                bio: "Ph D scholar working on Matrix Waring Problem",
+                year: "Batch 2024",
+                email: "mailto:ko449@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "Govt. P. G. Nehru College, Jhajjar, Haryana", year: "2022" },
+                    { degree: "B.Sc (Non-Medical)", institution: "Indira Priyadarshini College for Women, Jhajjar, Haryana", year: "2020" }
+                ],
+                preprints: [],       
+                social: {}
+            },
+            {
+                id: 26,
+                name: "Swarup Paul",
+                research: "Algebraic Geometry",
+                supervisor: "Prof. Indranil Biswas",
+                bio: "Ph.D. scholar working on moduli spaces of vector bundles and their birational properties",
+                year: "Batch 2024",
+                email: "mailto:sp125@snu.edu.in",
+                img: "images/Swarup.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of North Bengal", year: "2021" },
+                    { degree: "B.Sc", institution: "Salesian College, Siliguri Campus", year: "2019" }
+                ],
+                publications: [],
+                preprints: [],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/swarup-paul-b56249313",
+                    googleScholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            { 
+                id: 27,
+                name: "Sophia Karmakar",
+                research: "Algebraic Geometry",
+                supervisor: "Prof. Chandranandan Gangopadhyay",
+                bio: "PhD scholar working on Algebraic Geometry.",
+                year: "Batch 2025",
+                email: "sk763@snu.edu.in",
+                img: "images/Sophia.jpg",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Hyderabad", year: "2024" },
+                    { degree: "B.Sc Mathematics", institution: "MUC Women's College", year: "2022" }
+                ],
+                publications: [
+                    {
+                        title: " ",
+                        year: " ",
+                        link: "#"
+                    }
+                ],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/sophia-karmakar-24aa782b1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+                    googleScholar: " ",
+                    arxiv: "  ",
+                    personalWebpage: "  "
+                }
+            },
+            {
+                id: 28,
+                name: "Saurabh Dwivedi",
+                research: "Functional Analysis, Geometry of Banach Spaces, Banach Space Theory, Operator Algebra, Banach Algebra",
+                supervisor: "Prof. T. S. S. R. K. Rao and Dr Priyanka Grover",
+                bio: "PhD scholar working on the geometry of Banach spaces, focusing on weak*-weak points of continuity, state spaces, and related topological properties.",
+                year: "Batch 2023",
+                email: "mailto:saurabhdewedi876@gmail.com",
+                img: "",
+                education: [
+                    { degree: "PhD in Mathematics", institution: "Shiv Nadar Institution of Eminence, Delhi-NCR", year: "Present" },
+                    { degree: "M.Sc Mathematics", institution: "University of Hyderabad", year: "2023" },
+                    { degree: "B.Sc Mathematics", institution: "University of Delhi", year: "2021" }
+                ],
+                preprints: [
+                    { title: "An Extension of Phelps Theorem to spaces of vector-valued functions (Under Review)", year: "Under Review" }
+                ],
+                publications: [
+                    { title: "A Study on State Spaces in Classical Banach Spaces", journal: "Colloquium Mathematicum", year: "2025" },
+                    { title: "A study on coreflexive Banach spaces", journal: "Proc. Indian Acad. Sci. Math. Sci. (To appear)", year: "2026" },
+                    { title: "Weak*-Weak points of continuity of the state spaces", journal: "Revista de la Real Academia de Ciencias Exactas, Físicas y Naturales. (To appear)", year: "2026" }
+                ],
+                talks: [
+                    "Stability of Coreflexivity in the spaces of Bochner integrable functions, ICOST 2025.",
+                    "Stability of weak*-weak points of continuity in spaces of vector-valued functions, Jadavpur University, 2026.",
+                    "Weak*-weak points of continuity, Young Mathematicians in Operator Algebras, ISI Delhi (Invited Talk)."
+                ],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "https://arxiv.org/search/?query=Dwivedi%2C%20Saurabh&searchtype=author",
+                    personalWebpage: ""
+                }
+            },
+            {
+                id: 29,
+                name: "Sushruta Ghosh",
+                research: "Lie algebra, Lie superalgebra",
+                supervisor: "Dr. Amber Habib",
+                bio: "I am a PhD scholar. My research primarily focuses on Lie algebras, Lie superalgebras, related structures, and their representation theory.",
+                year: "Batch of 2022",
+                email: "mailto:sg546@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "M.Sc Mathematics", institution: "University of Hyderabad", year: "2020" },
+                    { degree: "B.Sc Mathematics", institution: "Vidyasagar University", year: "2018" }
+                ],
+                preprints: [],
+                publications: [],
+                social: {
+                    linkedin: "https://www.linkedin.com/in/sushruta-ghosh-3b0b5a282/",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: ""
+                }
+            },
+            { 
+                id: 30,
+                name: "Monimala Nej",
+                research: "Exponents of Primitive Companion matrices",
+                supervisor: "Dr. A. Satyanarayana Reddy",
+                bio: " Defended thesis on  August 21, 2019",
+                year: "Batch 2014",
+                email: "mailto:monimalanej@gmail.com",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {personalWebpage:"https://research.adamasuniversity.ac.in/researcher_profile/dr-monimala-nej-ph-d/"}
+                },
+            { 
+                id: 31,
+                name: "Devendra Prasad",
+                research: "FIXED DIVISORS AND GENERALIZED FACTORIALS",
+                supervisor: "Dr. A. Satyanarayana Reddy and Dr. Krishnan Rajkumar",
+                bio: "Defended thesis on Jan 21, 2019. Completed postdoctoral positions at IISER Tirupati and IMSC Chennai. Worked as Assistant     Professor in Shiv Nadar University, Chennai campus. Presently associated with Urban pro and Teacheron.",
+                year: "Batch 2014",
+                email: "mailto:devendraprasad969@yahoo.in",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            { 
+                id: 32,
+                name: "Shashankaditya Upadhyay",
+                research: "Some structural indices in ecological networks",
+                supervisor: "Prof Sudeepto Bhattacharya",
+                bio: "",
+                year: "Batch 2014",
+                email: "mailto:shashankaditya@yahoo.co.in",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            { 
+                id: 33,
+                name: "Biswajit Koley",
+                research: "POLYNOMIALS WITH INTEGER COEFFICIENTS DIVISIBLE BY CYCLOTOMIC POLYNOMIALS",
+                supervisor: "Dr. A. Satyanarayana Reddy",
+                bio: "",
+                year: "Batch 2015",
+                email: "mailto:biswajitkoley93@gmail.com",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            { 
+                id: 34,
+                name: "Samir Kumar Hazra" ,
+                research: "Extensions of Lie Superalgebras and their Automorphisms",
+                supervisor: "Prof Amber Habib",
+                bio: "",
+                year: "Batch 2015",
+                email: "mailto:samanj2009@gmail.com",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+                id: 35,
+                name: "Veer Singh Panwar",
+                research: "Positivity Properties of some special matrices and their Hadamard powers",
+                supervisor: "Dr. Priyanka Grover and Dr. A. Satyanarayana Reddy",
+                bio: "",
+                year: "Batch 2016",
+                email: "mailto:veerstar5@gmail.com",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+                id: 36,
+                name: "Shivani Chauhan",
+                research: "Double covers of Line graphs",
+                supervisor: "Dr. A. Satyanarayana Reddy",
+                bio: "",
+                year: "Batch 2019",
+                email: "mailto:chauhanshivani923@gmail.com",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+            id: 37,
+                name: "Anu Dhochak",
+                research: "Construction of maxfaces having swallowtail and cone-like singularity",
+                supervisor: "Dr. Pradip Kumar Mishra and Prof Amber habib",
+                bio: "",
+                year: "Batch 2019",
+                email: "mailto: ad404@snu.edu.in",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+            id: 38,
+                name: "Bharat Pratap Chauhan",
+                research: "ALMOST (STRICTLY) SEMIMONOTONE MATRICES",
+                supervisor: "Dr. Dipti Dubey",
+                bio: "",
+                year: "Batch 2019",
+                email: "mailto: bc102@snu.edu.in",
+                img: "",
+                education: [],
+                preprints: [],
+                social: {}
+            },
+            {
+            id: 39,
+                name: "Shrinit Singh",
+                research: "Combinatorial and Geometric Group Theory",
+                supervisor: "Dr. A. Satyanarayana Reddy and Prof Amber Habib",
+                bio: "I completed my Ph.D. in Mathematics, with a thesis titled Word maps and width in some free construction of groups, under the supervision of Prof. A. Satyanarayana Reddy and Prof. Amber Habib. I am currently a postdoctoral fellow with Prof. T. N. Venkataramana at ICTS-TIFR Bengaluru.",
+                year: "Batch 2020",
+                email: "mailto:shrinitsingh@gmail.com",
+                img: "images/Shnirit.jpg",
+                education: [ 
+                {degree: "Ph.D. in Mathematics", institution: "Shiv Nadar Institution of Eminence, Delhi-NCR", year: "2025" },
+                {degree: "BSMS, majoring in Mathematics", institution: "IISER Mohalii", year: "2017"}],
+                publications: [
+                {title: "Achiral Words", journal: "Communications in Algebra", year: "2025", link: "https://www.tandfonline.com/doi/full/10.1080/00927872.2024.2377805" },
+        {title: "C-width of graph of groups", journal: "Proceedings-Mathematical Sciences", year: "2024", link: "https://link.springer.com/article/10.1007/s12044-024-00802-5" },
+        {title: "A note on words having the same images on finite groups",journal: "Bulletin of the London Mathematical Society",
+            year: "2025",link: "https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/blms.70150" }        
+    ],
+
+                
+                social: {
+        researchgate: "https://www.researchgate.net/profile/Shrinit-Singh?ev=hdr_xprf",
+        googleScholar: "https://scholar.google.com/citations?user=-LjqAr4AAAAJ&hl=en",
+        personalWebpage: "" }
+
+            },
+            { id:40,
+            name: "Laxmi Kumari",
+            research: "Data Science",
+            supervisor: "Dr. charu Sharma",
+            bio: "Ph D scholar working on Applications of Data Science and AI",
+            year: "Batch 2024",
+            email: "mailto:lk894@snu.edu.in",
+            img: "images/Laxmi.jpeg",
+            education: [
+                    { degree: "M.Sc Mathematics", institution: "Ranchi University", year: "2019" },
+                    { degree: "B.Sc.", institution: "Gossner College", year: "2017" }],
+             preprints: [],
+                social: {}
+             },
+             {
+             id: 41,
+             name: "Mohit Kumar",
+             research: "Data Science",
+             supervisor: "Dr. Samit Bhattacharyya and Dr. Snehasis Mukherjee",
+             bio: "PhD scholar working on Statistical Generative models",
+             year: "Batch 2024",
+             email: "mailto:mk772@snu.edu.in",
+             img: "",
+             education: [
+                    { degree: "MTech Data Science", institution: "DIAT- DRDO, Pune", year: "2024" },
+                    { degree: "MSc Statistics", institution: "Indian Institute of Technology, Bombay", year: "2021" }
+                ],
+                 preprints: [],
+                 social: {}
+                
+                 },
+                 {
+    id: 42,
+    name: "Imran Ansari",
+    research: "Network Science, Computational Finance, Artificial Intelligence",
+    supervisor: "Prof. Niteesh Sahni",
+    bio: "Postdoctoral researcher at the Indian Institute of Science (IISc), Bangalore. His research focuses on uncovering mesoscale structures such as core–periphery and communities in financial networks, and leveraging these structures for portfolio optimization. His work integrates Random Matrix Theory, network science and data-driven approaches to understand complex financial systems. He has also developed novel algorithms, including ant colony optimization-based methods, for detecting core–periphery structures.",
+    year: "PhD 2020",
+    email: "mailto:ia6138232@gmail.com",
+    img: "images/Imran.jpeg",
+    education: [
+        { degree: "PhD in Mathematics", institution: "Shiv Nadar Institution of Eminence, Delhi-NCR, India", year: "2025" },
+        { degree: "M.Sc. in Mathematics", institution: "CSJM University, Kanpur, India", year: "2017" },
+        { degree: "B.Sc. in Mathematics", institution: "CSJM University, Kanpur, India", year: "2015" }
+    ],
+    preprints: [
+  { title: "Core-Periphery Dynamics in Market-Conditioned Financial Networks: A Conditional P-Threshold Mutual Information Approach", "year": "2026" },
+        { title: "A comprehensive review of core–periphery and community detection paradigms (Under review)", "year": "2026" },
+        { title: "Identifying core–periphery structure in networks via artificial ants (Under review)", "year": "2024" }
+    ],
+    publications: [
+        { "title": "A novel portfolio construction strategy based on the core–periphery profile of stocks", "journal": "Scientific Reports", "year": "2025" },
+        { "title": "Uncovering the hidden core–periphery structure in hyperbolic networks", "journal": "Physical Review E", "year": "2025" },
+        { "title": "Exploring the core–periphery and community structure in financial networks through random matrix theory", "journal": "Physica A", "year": "2025" }
+    ],
+    talks: [
+        "Identifying Core–Periphery Structure via Artificial Ants, StatFin 2025 (CMI, India).",
+        "Detection of Core–Periphery Structure using ACO, NetSciX 2025 (IIT Indore, India).",
+        "A Novel Portfolio Construction Strategy Based on the Core–Periphery Profile of Stocks, Complex Networks 2024 (Istanbul, Turkey).",
+        "Portfolio Optimization Based on Mesoscale Structure in Financial Networks, ICAMM 2023 (IIT Indore, India).",
+        "Efficient Portfolio Identification through Network-Based Strategy, ICMMAAC 2023 (Jaipur, India)."
+    ],
+    social: {
+        linkedin: "https://www.linkedin.com/in/imran-ansari-15b35a1ba",
+        googlescholar: "https://scholar.google.com/citations?user=bgujiUwAAAAJ&hl=en",
+        researchgate: "https://www.researchgate.net/profile/Imran_Ansari10",
+        github: "https://github.com/Imran10896",
+        orcid: "https://orcid.org/0009-0007-2481-0015" }
+},               
+                {
+                id: 43,
+                name: "Shivani Mishra",
+                research: "Geometry",
+                supervisor: "Dr. Pradip Mishra",
+                bio: "PhD scholar working on the differential geometry.",
+                year: "Batch 2025",
+                email: "mailto:sm907@snu.edu.in",
+                img: "",
+                education: [
+                    { degree: "MSc Mathematics and Computing", institution: "Banaras Hindu University, Varanasi", year: "2022" },
+                    { degree: "BSc Mathematics", institution: "Mahatma Gandhi Kashi Vidyapith, Varanasi", year: "2020" }
+                ],
+                preprints: [],
+                publications: [],
+                talks: [],
+                social: {
+                    linkedin: "",
+                    googlescholar: "",
+                    arxiv: "",
+                    personalWebpage: "" } 
+                }
+      
+              
+            
+        ];
+
+        // ============================================================
+        // 2. LOGIC TO RENDER GROUPED LIST
+        // ============================================================
+        
+        function renderGrid() {
+            const grid = document.getElementById('studentGrid');
+            grid.innerHTML = '';
+
+            // Helper to extract 4-digit year for sorting
+            const extractYear = (s) => {
+                if(!s.year) return 0;
+                const match = s.year.match(/\d{4}/);
+                return match ? parseInt(match[0]) : 0;
+            };
+
+            // Sort students: Newest batch first (2025 -> 2020)
+            const sortedStudents = [...students].sort((a, b) => extractYear(b) - extractYear(a));
+
+            let lastYear = null;
+
+            sortedStudents.forEach(student => {
+                const yearVal = extractYear(student);
+
+                // If the year changes, insert a Section Header
+                if (yearVal !== lastYear) {
+                    const header = document.createElement('h2');
+                    header.className = 'batch-header';
+                    header.textContent = yearVal > 0 ? `Batch ${yearVal}` : 'Other Batches';
+                    grid.appendChild(header);
+                    lastYear = yearVal;
+                }
+
+                // Create Student Card
+                const card = document.createElement('div');
+                card.className = 'student-card';
+                card.onclick = () => openModal(student.id);
+                
+                // Fallback Image for Grid
+                const imgUrl = student.img ? student.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(student.name)}&background=random&color=fff`;
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${imgUrl}" alt="${student.name}" class="avatar">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-name">${student.name}</div>
+                        <div class="card-title">${student.research}</div>
+                        <div class="card-meta">
+                            <span>${student.year}</span>
+                            <span>View Profile &rarr;</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(id) {
+            const s = students.find(x => x.id === id);
+            if(!s) return;
+
+            // 1. Basic Info with Image Fallback
+            const imgUrl = s.img ? s.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(s.name)}&background=003366&color=fff&size=200`;
+            document.getElementById('mImg').src = imgUrl;
+            document.getElementById('mName').textContent = s.name;
+            document.getElementById('mYear').textContent = s.year;
+            document.getElementById('mResearch').textContent = s.research;
+            
+            // Handle missing supervisor gracefully
+            document.getElementById('mSupervisor').textContent = s.supervisor ? s.supervisor : "Not specified";
+            
+            document.getElementById('mBio').textContent = s.bio;
+
+            // --- Render Social Links & Emails ---
+            const socialContainer = document.getElementById('mSocials');
+            socialContainer.innerHTML = '';
+
+            // Handle Emails (Supports new Object format AND old String format)
+            if (Array.isArray(s.emails)) {
+                s.emails.forEach(e => {
+                    if (typeof e === 'object' && e.type && e.address) {
+                        socialContainer.innerHTML += `<a href="${e.address}" class="social-btn email">${e.type}</a>`;
+                    } else {
+                        socialContainer.innerHTML += `<a href="${e}" class="social-btn email">Email</a>`;
+                    }
+                });
+            } else if (s.email) {
+                socialContainer.innerHTML += `<a href="${s.email}" class="social-btn email">Email</a>`;
+            }
+
+            // Handle Socials (Robust key checking)
+            if(s.social) {
+                const sLinks = s.social;
+                if(sLinks.linkedin) socialContainer.innerHTML += `<a href="${sLinks.linkedin}" target="_blank" class="social-btn linkedin">LinkedIn</a>`;
+                
+                // Handle Scholar variations
+                const scholarLink = sLinks.googlescholar || sLinks.googleScholar;
+                if(scholarLink) socialContainer.innerHTML += `<a href="${scholarLink}" target="_blank" class="social-btn scholar">Scholar</a>`;
+                
+                if(sLinks.researchgate) socialContainer.innerHTML += `<a href="${sLinks.researchgate}" target="_blank" class="social-btn rg">RG</a>`;
+                
+                // Handle Webpage variations
+                const webLink = sLinks.personalWebpage || sLinks.Personalwebpage || sLinks['Personal webpage'];
+                if(webLink) socialContainer.innerHTML += `<a href="${webLink}" target="_blank" class="social-btn website">Personal Home Page</a>`;
+            }
+
+            // --- Render Education ---
+            const eduContainer = document.getElementById('mEducation');
+            eduContainer.innerHTML = '';
+            if(s.education && s.education.length > 0) {
+                s.education.forEach(edu => {
+                    eduContainer.innerHTML += `
+                        <li>
+                            <div class="edu-degree">${edu.degree}</div>
+                            <div class="edu-meta">${edu.institution}, ${edu.year}</div>
+                        </li>`;
+                });
+            } else {
+                eduContainer.innerHTML = '<li style="color:#999;">Not provided</li>';
+            }
+
+            // --- Render Publications ---
+            const pubContainer = document.getElementById('mPublications');
+            pubContainer.innerHTML = '';
+            if(s.publications && s.publications.length > 0) {
+                s.publications.forEach(pub => {
+                    // Support Journal, Book, and Conference
+                    const venue = pub.journal || pub.book || pub.conference;
+                    const linkHtml = pub.link ? `<a href="${pub.link}" target="_blank" class="pub-link">[Link]</a>` : '';
+                    pubContainer.innerHTML += `
+                        <li>
+                            <span class="pub-year">(${pub.year})</span> 
+                            ${pub.title}. 
+                            <span class="pub-journal">${venue}</span>
+                            ${linkHtml}
+                        </li>`;
+                });
+            } else {
+                pubContainer.innerHTML = '<li style="color:#999;">No publications listed yet.</li>';
+            }
+
+            // --- Render Preprints ---
+            const preContainer = document.getElementById('mPreprints');
+            preContainer.innerHTML = '';
+            if(s.preprints && s.preprints.length > 0) {
+                s.preprints.forEach(pre => {
+                    let linkHtml = '';
+                    if(pre.link || pre.arxivLink) {
+                        const url = pre.link || pre.arxivLink;
+                        linkHtml = `<a href="${url}" target="_blank" class="pub-link">[Link]</a>`;
+                    }
+                    
+                    preContainer.innerHTML += `
+                        <li>
+                            <span class="pub-year">(${pre.year})</span> 
+                            ${pre.title}
+                            ${linkHtml}
+                        </li>`;
+                });
+            } else {
+                preContainer.innerHTML = '<li style="color:#999;">No preprints listed.</li>';
+            }
+
+            // --- Render Talks ---
+            const talksContainer = document.getElementById('mTalks');
+            const talksHeader = document.getElementById('mTalksHeader');
+            talksContainer.innerHTML = '';
+            
+            if(s.talks && s.talks.length > 0) {
+                talksHeader.style.display = 'block';
+                s.talks.forEach(talk => {
+                    // Assuming string input for now
+                    talksContainer.innerHTML += `
+                        <li>
+                            ${talk}
+                        </li>`;
+                });
+            } else {
+                talksHeader.style.display = 'none';
+            }
+
+            document.getElementById('profileModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('profileModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderGrid);
+    </script>
+</body>
+</html>

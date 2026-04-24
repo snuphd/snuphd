@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functional Analysis Group — SNU Mathematics Ph.D.</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .scholar-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:8px; }
+    .scholar-chip { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; display:flex; align-items:center; gap:12px; transition:transform .18s,box-shadow .18s; text-decoration:none; color:inherit; }
+    .scholar-chip:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); text-decoration:none; }
+    .sch-dot { width:38px; height:38px; border-radius:50%; background:var(--navy); color:var(--gold); font-family:var(--font-serif); font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .sch-info { min-width:0; }
+    .sch-name { font-family:var(--font-serif); font-size:.9rem; color:var(--navy); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-research { font-size:.75rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sch-year { font-size:.7rem; color:var(--navy-lt); margin-top:2px; font-weight:600; }
+  </style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<section class="group-hero" style="background:linear-gradient(135deg,#3a1a6a 0%,#6a3fa0 100%);">
+  <div style="font-size:3rem;margin-bottom:12px;">📐</div>
+  <h1>Functional Analysis Group</h1>
+  <p>Investigating operator theory, matrix analysis, and the geometry of function spaces.</p>
+</section>
+
+<section class="section">
+  <div class="container" style="display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;">
+    <div>
+      <h2 class="section-title">About the Group</h2>
+      <div class="gold-rule"></div>
+      <p style="color:var(--muted);margin-bottom:14px;">The Functional Analysis group focuses on operator theory and matrix analysis, with particular interest in operator norms, subdifferential theory, approximate orthogonality in spaces of bounded linear operators, and best approximation problems.</p>
+      <p style="color:var(--muted);margin-bottom:14px;">Other active research directions include special operators on spaces of analytic functions (Hardy spaces, Bergman spaces), the geometry of Banach spaces, operator algebras, and connections between functional analysis and complex analysis.</p>
+      <h3 style="font-family:var(--font-serif);color:var(--navy);margin:28px 0 14px;font-size:1.15rem;">Research Themes</h3>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:10px;">
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Operator Theory</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Matrix Analysis</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Analytic Function Spaces</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Banach Space Geometry</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Approximate Orthogonality</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Spectral Theory</li>
+        <li style="background:#f3eef8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:#4a2a80;font-weight:600;">Best Approximation</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="background:var(--navy);color:#fff;padding:28px 24px;">
+        <h4 style="color:var(--gold-lt);font-family:var(--font-serif);margin-bottom:16px;">Quick Info</h4>
+        <table style="width:100%;font-size:.88rem;border-collapse:collapse;">
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);">Seminars</td><td style="padding:7px 0 7px 10px;border-bottom:1px solid rgba(255,255,255,.1);">Weekly</td></tr>
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1);">Scholars</td><td style="padding:7px 0 7px 10px;border-bottom:1px solid rgba(255,255,255,.1);">7 current &amp; recent</td></tr>
+          <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;">Contact</td><td style="padding:7px 0 7px 10px;"><a href="mailto:priyanka.grover@snu.edu.in" style="color:var(--gold-lt);">Dr. Priyanka Grover</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Faculty</h2>
+    <div class="gold-rule"></div>
+    <div class="faculty-grid">
+      <a href="https://snu.edu.in/schools/school-of-natural-sciences/faculty/priyanka-grover/" target="_blank" class="faculty-card"><div class="faculty-avatar">PG</div><div class="faculty-name">Dr. Priyanka Grover</div><div class="faculty-role">Associate Professor<br><span style="font-size:.78rem;">Matrix Analysis, Operator Theory</span></div></a>
+      <a href="https://snu.edu.in/faculty/sneh-lata/" target="_blank" class="faculty-card"><div class="faculty-avatar">SL</div><div class="faculty-name">Prof. Sneh Lata</div><div class="faculty-role">Professor<br><span style="font-size:.78rem;">Operators on Function Spaces</span></div></a>
+      <a href="https://snu.edu.in/faculty/taduri-srinivasa-siva-rama-krishnarao/" target="_blank" class="faculty-card"><div class="faculty-avatar">TK</div><div class="faculty-name">Prof. T. S. S. R. K. Rao</div><div class="faculty-role">Professor<br><span style="font-size:.78rem;">Banach Space Theory</span></div></a>
+      <a href="https://snu.edu.in/faculty/sudip-ranjan-bhuia/" target="_blank" class="faculty-card"><div class="faculty-avatar">SRB</div><div class="faculty-name">Dr. Sudip Ranjan Bhuia</div><div class="faculty-role">Assistant Professor<br><span style="font-size:.78rem;">Functional Analysis</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Ph.D. Scholars in this Group</h2>
+    <div class="gold-rule"></div>
+    <p style="color:var(--muted);margin-bottom:20px;">Click a scholar's card to view their full profile in the Scholar Directory.</p>
+    <div class="scholar-strip">
+      <a class="scholar-chip" href="students.html#s11"><div class="sch-dot">KKG</div><div class="sch-info"><div class="sch-name">Krishna Kumar Gupta</div><div class="sch-research">Matrix Analysis &amp; Operator Theory</div><div class="sch-year">Batch 2021 · Supervisor: Dr. Priyanka Grover</div></div></a>
+      <a class="scholar-chip" href="students.html#s28"><div class="sch-dot">SD</div><div class="sch-info"><div class="sch-name">Saurabh Dwivedi</div><div class="sch-research">Banach Space Geometry, Operator Algebra</div><div class="sch-year">Batch 2023 · Supervisor: Prof. T. S. S. R. K. Rao &amp; Dr. Priyanka Grover</div></div></a>
+      <a class="scholar-chip" href="students.html#s13"><div class="sch-dot">DKS</div><div class="sch-info"><div class="sch-name">Dushyant Kumar Sengar</div><div class="sch-research">Operators on Analytic Function Spaces</div><div class="sch-year">Batch 2023 · Supervisor: Prof. Sneh Lata</div></div></a>
+      <a class="scholar-chip" href="students.html#s24"><div class="sch-dot">SSN</div><div class="sch-info"><div class="sch-name">Santosh Singh Negi</div><div class="sch-research">Operator Theory</div><div class="sch-year">Batch 2023 · Supervisor: Prof. Sneh Lata</div></div></a>
+      <a class="scholar-chip" href="students.html#s12"><div class="sch-dot">SM</div><div class="sch-info"><div class="sch-name">Sohan Misra</div><div class="sch-research">Functional Analysis &amp; Operator Theory</div><div class="sch-year">Batch 2025 · Supervisor: Dr. Priyanka Grover</div></div></a>
+      <a class="scholar-chip" href="students.html#s19"><div class="sch-dot">HS</div><div class="sch-info"><div class="sch-name">Hariom Singh</div><div class="sch-research">Functional Analysis</div><div class="sch-year">Batch 2025</div></div></a>
+      <a class="scholar-chip" href="students.html#s35"><div class="sch-dot">VSP</div><div class="sch-info"><div class="sch-name">Veer Singh Panwar</div><div class="sch-research">Positivity Properties of Special Matrices</div><div class="sch-year">Batch 2016 · Supervisor: Dr. Priyanka Grover &amp; Dr. A. S. Reddy</div></div></a>
+    </div>
+    <div style="margin-top:22px;"><a class="btn btn-primary" href="students.html">Full Scholar Directory →</a></div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Selected Recent Publications</h2>
+    <div class="gold-rule"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2026 · <em>arXiv preprint</em></div><div style="font-weight:600;color:var(--navy);">Properties of best approximations with respect to Ky Fan p-k norm, and strict spectral approximants of a matrix</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Krishna Kumar Gupta</div><a href="https://arxiv.org/abs/2603.07498" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">View on arXiv →</a></div>
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>Colloquium Mathematicum</em></div><div style="font-weight:600;color:var(--navy);">A Study on State Spaces in Classical Banach Spaces</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Saurabh Dwivedi</div></div>
+      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>arXiv preprint</em></div><div style="font-weight:600;color:var(--navy);">Subdifferential of B(H,K) norm, and approximate orthogonality</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Krishna Kumar Gupta</div><a href="https://arxiv.org/abs/2505.06925" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">View on arXiv →</a></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
