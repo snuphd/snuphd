@@ -14,6 +14,16 @@
     .sch-name { font-family:var(--font-serif); font-size:.9rem; color:var(--navy); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .sch-research { font-size:.75rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .sch-year { font-size:.7rem; color:var(--navy-lt); margin-top:2px; font-weight:600; }
+
+    /* Vertical Resource Sidebar Styles */
+    .resource-sidebar { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .res-btn-sideway { 
+      display: block; width: 100%; padding: 12px; 
+      background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold);
+      color: var(--navy); text-decoration: none; font-size: 0.85rem; font-weight: 600;
+      transition: all 0.2s ease; border-radius: 4px;
+    }
+    .res-btn-sideway:hover { background: #f0f4f8; border-left-color: var(--navy); transform: translateX(5px); }
   </style>
 </head>
 <body>
@@ -43,6 +53,7 @@
         <li style="background:#eef1f8;padding:7px 16px;border-radius:20px;font-size:.88rem;color:var(--navy);font-weight:600;">Number Theory</li>
       </ul>
     </div>
+
     <div>
       <div class="card" style="background:var(--navy);color:#fff;padding:28px 24px;">
         <h4 style="color:var(--gold-lt);font-family:var(--font-serif);margin-bottom:16px;">Quick Info</h4>
@@ -52,11 +63,20 @@
           <tr><td style="color:rgba(255,255,255,.6);padding:7px 0;">Contact</td><td style="padding:7px 0 7px 10px;"><a href="mailto:asreddy@snu.edu.in" style="color:var(--gold-lt);">Dr. A. Satyanarayana Reddy</a></td></tr>
         </table>
       </div>
+
+      <div class="resource-sidebar">
+        <h4 style="color:var(--navy);font-family:var(--font-serif);font-size:1rem;margin-bottom:5px;">Important Websites</h4>
+        <div class="gold-rule" style="width:40px;margin-bottom:12px;"></div>
+        <a href="http://www.numbertheory.org/" target="_blank" class="res-btn-sideway">Number Theory</a>
+        <a href="https://kconrad.math.uconn.edu/blurbs/" target="_blank" class="res-btn-sideway">Keith Conrad Articles</a>
+        <a href="https://ysharifi.wordpress.com/" target="_blank" class="res-btn-sideway">Y. Sharifi Math Blog</a>
+        <a href="https://yutsumura.com/linear-algebra/" target="_blank" class="res-btn-sideway">Problems in Linear Algebra</a>
+        <a href="https://www.combinatorics.org/" target="_blank" class="res-btn-sideway">E-Journal of Combinatorics</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FACULTY -->
 <section class="section section-alt">
   <div class="container">
     <h2 class="section-title">Faculty</h2>
@@ -70,12 +90,10 @@
   </div>
 </section>
 
-<!-- SCHOLARS -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Ph.D. Scholars in this Group</h2>
     <div class="gold-rule"></div>
-    <p style="color:var(--muted);margin-bottom:20px;">Click a scholar's card to view their full profile in the Scholar Directory.</p>
     <div class="scholar-strip">
       <a class="scholar-chip" href="students.html#s1"><div class="sch-dot">KS</div><div class="sch-info"><div class="sch-name">Kavita Samant</div><div class="sch-research">Algebraic Graph Theory &amp; Group Theory</div><div class="sch-year">Batch 2021 · Dr. A. Satyanarayana Reddy</div></div></a>
       <a class="scholar-chip" href="students.html#s9"><div class="sch-dot">KhS</div><div class="sch-info"><div class="sch-name">Khyati Sharma</div><div class="sch-research">Group Theory &amp; Combinatorics</div><div class="sch-year">Batch 2020 · Dr. A. Satyanarayana Reddy</div></div></a>
@@ -87,23 +105,21 @@
       <a class="scholar-chip" href="students.html#s30"><div class="sch-dot">MN</div><div class="sch-info"><div class="sch-name">Monimala Nej</div><div class="sch-research">Exponents of Primitive Companion Matrices</div><div class="sch-year">Batch 2014 · Dr. A. Satyanarayana Reddy</div></div></a>
       <a class="scholar-chip" href="students.html#s31"><div class="sch-dot">DP</div><div class="sch-info"><div class="sch-name">Devendra Prasad</div><div class="sch-research">Fixed Divisors &amp; Generalized Factorials</div><div class="sch-year">Batch 2014 · Dr. A. Satyanarayana Reddy</div></div></a>
       <a class="scholar-chip" href="students.html#s33"><div class="sch-dot">BK</div><div class="sch-info"><div class="sch-name">Biswajit Koley</div><div class="sch-research">Polynomials divisible by Cyclotomic Polynomials</div><div class="sch-year">Batch 2015 · Dr. A. Satyanarayana Reddy</div></div></a>
+      <a class="scholar-chip" href="students.html#s38"><div class="sch-dot">NS</div><div class="sch-info"><div class="sch-name">N. Suhith</div><div class="sch-research">Nural codes</div><div class="sch-year">Batch 2020 · Dr. Neha Gupta</div></div></a>
       <a class="scholar-chip" href="students.html#s34"><div class="sch-dot">SKH</div><div class="sch-info"><div class="sch-name">Samir Kumar Hazra</div><div class="sch-research">Extensions of Lie Superalgebras</div><div class="sch-year">Batch 2015 · Prof. Amber Habib</div></div></a>
       <a class="scholar-chip" href="students.html#s36"><div class="sch-dot">ShC</div><div class="sch-info"><div class="sch-name">Shivani Chauhan</div><div class="sch-research">Double Covers of Line Graphs</div><div class="sch-year">Batch 2019 · Dr. A. Satyanarayana Reddy</div></div></a>
     <a class="scholar-chip" href="students.html#s3"><div class="sch-dot">VD</div><div class="sch-info"><div class="sch-name">Varun Dawar</div><div class="sch-research">Neural Codes</div><div class="sch-year">Batch 2025 · Dr. Neha Gupta</div></div></a>
-      </div>
-    
+    </div>
     <div style="margin-top:22px;"><a class="btn btn-primary" href="students.html">Full Scholar Directory →</a></div>
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
 <section class="section section-alt">
   <div class="container">
     <h2 class="section-title">Recent Publications from the Group</h2>
     <div class="gold-rule"></div>
     <div style="display:flex;flex-direction:column;gap:14px;">
       <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2026 · <em>Linear and Multilinear Algebra</em></div><div style="font-weight:600;color:var(--navy);">The Generating Graph of Dicyclic Groups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Kavita Samant</div><a href="https://www.tandfonline.com/doi/full/10.1080/03081087.2026.2623170" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
-      <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2026 · <em>arXiv preprint</em></div><div style="font-weight:600;color:var(--navy);">Group Structures via Subgroup Counts</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Khyati Sharma</div><a href="https://arxiv.org/abs/2604.08040" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">View on arXiv →</a></div>
       <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>Bulletin of Australian Mathematical Society</em></div><div style="font-weight:600;color:var(--navy);">Groups having 12 cyclic subgroups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Khyati Sharma</div><a href="https://www.cambridge.org/core/journals/bulletin-of-the-australian-mathematical-society/article/abs/groups-having-12-cyclic-subgroups/F840743916FA4E4E2047FA05246051EC" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
       <div class="card" style="padding:18px 20px;"><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">2025 · <em>Bulletin of the London Mathematical Society</em></div><div style="font-weight:600;color:var(--navy);">A note on words having the same images on finite groups</div><div style="font-size:.85rem;color:var(--muted);margin-top:4px;">Shrinit Singh</div><a href="https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/blms.70150" target="_blank" style="font-size:.8rem;color:var(--navy-lt);font-weight:600;display:inline-block;margin-top:7px;">Read Paper →</a></div>
     </div>
@@ -112,4 +128,3 @@
 
 </body>
 </html>
-
